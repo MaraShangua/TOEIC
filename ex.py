@@ -7,7 +7,7 @@ def excel():
     excel_file_path = 'TOEIC.xlsx'
 
     # 읽어올 특정 행의 인덱스
-    selected_row_index = random.randint(1,1160)  # 예시로 첫 번째 행을 선택
+    selected_row_index = random.randint(1,1159)  # 예시로 첫 번째 행을 선택
 
     # 가져올 특정 열의 이름
     selected_eng = '단어'  # 실제 열 이름으로 변경
@@ -28,8 +28,12 @@ def excel():
 
     mean_kor= extract_values_inside_brackets(kor_value)
 
-
-    return [eng_value, mean_kor[0]]
+    if mean_kor:
+        # mean_kor 리스트가 비어 있지 않은 경우에만 접근
+        return [eng_value, mean_kor[0]]
+    else:
+        # 리스트가 비어 있을 때 처리할 내용
+        return [eng_value, "No Meanings"]
 
 def extract_values_inside_brackets(input_string):
     # 정규식 패턴
